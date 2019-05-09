@@ -79,13 +79,6 @@ Duisburg-Essen, who has written about the cognative differences between typescri
 and has written quite extensively about the issues present in programming language design and its
 lack of empirical evidence gathering based around decisions.
 
-While I find quorum to be an interesting project, I feel like it is in part fueled by a political
-situation going on in the programming language research community. I get this impression because of
-the limited scope of programming language paradigms tested, and the apporach overall. There are
-comments around this from other members of the community -- for example why lisps were completely
-excluded. That having been said, JavaScript is within the same family as quorum and there is a lot
-to be learned.
-
 ## 4. Papers on programmer comprehension:
 
 a) [Stimulus Structures and Mental Representations in Expert Comprehension of Computer
