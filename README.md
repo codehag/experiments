@@ -99,5 +99,5 @@
 
 ## Prior Art
 
-See: [Papers](./papers/index.md)
+See: [Papers](./papers.md)
 
