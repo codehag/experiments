@@ -6,6 +6,11 @@
 * code churn (only post)
 * Developer sentiment
 
+## how to measure
+* ask subjects
+* timing task completion
+* assessing correctness of implementations
+
 ## Types of studies
 * eye tracking studies
   * collectable data:
@@ -101,3 +106,10 @@
 
 See: [Papers](./papers.md)
 
+## Risks
+
+* biased experiment that favor proposals
+* biased experiment that favors abandoning proposal
+* experiment data has no impact on decision
+* experiment data is ignored
+* experiment data is faulty and leads to a faulty decision
