@@ -24,7 +24,7 @@ let result = exclaim(capitalize(doubleSay("hello")));
 #### Alternative list style:
 
 ```javascript
-const input = "hello;
+const input = "hello";
 const doubledInput = doubleSay(input);
 const capitalizedInput = capitalize(doubleInput);
 const result = exclaim(capitalizedInput);
