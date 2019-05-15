@@ -101,7 +101,11 @@ function divide(x, y) {
   return x / y
 }
 
-const result = add(5, multiply(divide(15, 3)))
+const x = divide(15, 3);
+const y = multiply(x);
+const result = add(5, y);
+
+// This code will throw
 ```
 Did you have difficulty with any part of this code, and if so, where?
 
