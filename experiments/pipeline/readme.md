@@ -1,17 +1,17 @@
 # Pipeline operator
 
-###JFeatures:
+### JFeatures:
 
 - new syntax introduced
 - new control flow introduced
 
-###Benefits:
+### Benefits:
 
 - alternative to extending prototypes
 - may be more readable
 - reduces cyclomatic complexity
 
-###Risks:
+### Risks:
 
 - higher cognative load due to two types of approaches to similar problems
 - higher cognative load due to non-linguistic identifier used
@@ -51,7 +51,7 @@ Verifiable claims:
 - error detection
   - find the bug in this function
 
-###Functional variations:
+### Functional variations:
 - Smart Pipeline behavior
 - F# pipeline behavior
 
