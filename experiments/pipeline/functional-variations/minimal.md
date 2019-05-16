@@ -1,4 +1,4 @@
-### F# Pipelines
+### Minimal Pipelines
 
 #### base case
 ```javascript
