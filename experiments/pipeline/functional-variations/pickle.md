@@ -1,71 +1,150 @@
+#### Pickle Helpers
+
+```
+const dayInMilliseconds = 86400000;
+
+wash(type) {
+  return `clean-${type}`;
+}
+
+cut(type) {
+  return `cut-${type}`;
+}
+
+pound(type) {
+  return `crushed-${type}`;
+}
+
+class Jar {
+  constructor(type, count) {
+    this.type = type;
+    this.ingredients = [];
+    this.count = count;
+  }
+
+  updateType(type) {
+    this.pickleType = type;
+  }
+
+  addIngredient(ingredient) {
+    this.ingredients.push(ingredient);
+  }
+
+  takeOne() {
+    this.count = this.count - 1;
+  }
+}
+
+add(ingredients, jar) {
+  ingredients.forEach(ingredient => jar.addIngredient(ingredient));
+  return jar;
+}
+
+salt(jar) {
+  return add(["salt"], jar);
+}
+
+ferment(jar, days) {
+  return new Promise(resolve, reject) {
+    if (!jar) {
+      throw Error("No Pickle Jar!");
+    }
+    setTimeout(() => {
+      const pickle = `Pickled ${jar.type}`
+      jar.updateType(pickle);
+      resolve(jar);
+    }, days * dayInMilliseconds);
+  }
+}
+```
+
 #### Pickle test 1: Basic Pickle
 
 ```javascript
-const pickle = takePickle(await ferment(salt(add("water", makeJar(wash("cucumber")))), 2));
+const pickleJar = await ferment(salt(add(["water"], new Jar(wash("cucumber"), 10))), 2));
+const pickle = pickleJar.takeOne();
 ```
 
 ```javascript
 const washedCucumber = wash("cucumber");
-const cucumberJar = makeJar(washedCucumber);
-const wateryCucumberJar = add("water", cucumberJar);
+const cucumberJar = new Jar(washedCucumber);
+const wateryCucumberJar = add(["water"], cucumberJar);
 const saltyCucumberJar = salt(cucumberJar);
-const pickleJar = await ferment(saltyCucumberJar);
-const pickle = takePickle(pickleJar);
+const pickleJar = await ferment(saltyCucumberJar, 2);
+const pickle = pickleJar.takeOne();
 ```
 
 ```javascript
-"cucumber"
+const pickle = "cucumber"
   |> wash
-  |> makeJar
-  |> (_ => fillJar("water", _))
-  |> (_ => add("salt", _))
-  |> ferment
-  |> (_ => _.then(takePickle))
+  |> (_ => new Jar(_))
+  |> (_ => add(["water"], _))
+  |> salt
+  |> (_ => ferment(_, 2))
+  |> (_ => _.then(pickleJar => pickleJar.takeOne()))
 ```
 
 ```javascript
-"cucumber"
+const pickle = "cucumber"
   |> wash
-  |> makeJar
-  |> (_ => fillJar("water", _))
-  |> (_ => add("salt", _))
-  |> ferment
+  |> (_ => new Jar(_))
+  |> (_ => add(["water"], _))
+  |> salt
+  |> (_ => ferment(_, 2))
   |> await
-  |> takePickle
+  |> (_ => _.takeOne());
 ```
 
 ```javascript
-"cucumber"
+const pickle = "cucumber"
   |> wash
-  |> makeJar
-  |> fillJar("water", #)
-  |> add("salt", #)
-  |> ferment
+  |> new Jar(#)
+  |> add(["water"], #)
+  |> salt
+  |> ferment(#, 2)
   |> await #
-  |> takePickle
+  |> #.takeOne()
 ```
 
-## Properly slavic pickles
+## Bug in the pickle jar
 
-Properly slavic pickles have two extra ingredients, dill and cassius leaves. The dill be added
-before you fill the jar with water, and the cassius leaves should be added after the salt. How would
-you write this, using the pipeline operator (choose any variant)
-
-## Bugs in the pickle jars
-
-Oh no! there is a bug in all three of our pickle jars. Read each snippit and find it's bug.
+Oh no! there is a bug in our saurkraut jar. The jar was made the same way as the pickle jar.  Read the snippit and find it's bug.
 
 Minimal Jar
 ```javascript
-"cucumber"
+const saurkraut = "cabbage"
   |> wash
-  |> makeJar
-  |> (_ => fillJar("water", _))
-  |> (_ => add("salt", _))
-  |> ferment(_)
-  |> (_ => _.then(takePickle))
+  |> cut
+  |> pound
+  |> (_ => new Jar(_))
+  |> salt
+  |> ferment(_, 14)
+  |> (_ => _.then(jar => jar.takeOne))
 
-// Error in function ferment: Cannot ferment undefined
+// Error: No Pickle Jar!
+```
+
+The bug is on line ...
+1
+2
+3
+4
+5
+6
+7
+
+```javascript
+const saurkraut = "cucumber"
+  |> wash
+  |> cut
+  |> pound
+  |> (_ => new Jar(_)
+  |> salt
+  |> (_ => ferment(_, 14))
+  |> await
+  |> (_ => _.takeOne())
+
+// SyntaxError: missing ) in parenthetical
 ```
 
 The bug is on line ...
@@ -80,36 +159,14 @@ The bug is on line ...
 ```javascript
 "cucumber"
   |> wash
-  |> makeJar
-  |> (_ => fillJar("water", _))
-  |> (_ => add("salt", _))
-  |> ferment
-  |> await pickle
-  |> takePickle
-
-// Error in function takePickle: pickleJar is undefined
-```
-
-The bug is on line ...
-1
-2
-3
-4
-5
-6
-7
-
-```javascript
-"cucumber"
-  |> wash
-  |> makeJar
-  |> fillJar(#, "water")
-  |> add("salt", #)
+  |> new Jar
+  |> add(["water"], #)
+  |> salt
   |> ferment
   |> await
-  |> takePickle
+  |> #.takeOne()
 
-// Error in function takePickle: pickleJar is undefined
+// Output is "Pickle with ingredients: undefined, water, salt"
 ```
 
 The bug is on line ...
@@ -120,3 +177,41 @@ The bug is on line ...
 5
 6
 7
+
+### Refactor a kimchi jar
+
+We have a different recipe, this time for kimchi. It is written like this:
+
+```javascript
+const pasteIngredients = ["garlic", "ginger", "sugar", "fish sauce"];
+function makePaste(pasteName, [firstIngredient, ...rest]) {
+  return new Promise(resolve) {
+    setTimeout(() => {
+      resolve(`${pasteName} made from ${rest.join(", ")} and ${firstIngredient}`);
+    , 9000}
+  }
+}
+
+const kimchiJar = await ferment(
+    stir(
+      add(
+        await makePaste(
+          "spicy paste",
+          ingredients
+        ),
+        new Jar(
+          salt(
+            cut(
+              wash("cabbage")
+            )
+          )
+        )
+      )
+    ), 2
+  )
+);
+
+const kimchi = kimchiJar.takeOne();
+```
+
+How would you refactor this?
