@@ -49,6 +49,9 @@ ferment(jar, days) {
     if (!jar) {
       throw Error("No Pickle Jar!");
     }
+    if (!days) {
+      throw Error("No day length provided");
+    }
     setTimeout(() => {
       const pickle = `Pickled ${jar.type}`
       jar.updateType(pickle);
@@ -108,7 +111,51 @@ const pickle = "cucumber"
 
 ## Bug in the pickle jar
 
-Oh no! there is a bug in our saurkraut jar. The jar was made the same way as the pickle jar.  Read the snippit and find it's bug.
+Oh no! there is a bug in both of our saurkraut jars. The jars were made either method you saw before.  Read the snippit and find it's bug.
+
+```javascript
+const saurkrautJar = await ferment(
+  salt(
+    add(
+      ["water"],
+      new Jar(wash("cabbage"), 10)
+    )
+  )
+);
+const saurkraut = saurkrautJar.takeOne();
+
+// Error: No day length provided
+```
+The bug is on line ...
+1
+2
+3
+4
+5
+6
+7
+
+
+```javascript
+const washedCabbage = wash("cabbage");
+const cutCabbage = cut(washedCabbage);
+const crushedCabbage = pound(cutCabbage);
+const cabbageJar = new Jar(crushedCabbage);
+const saltyCabbageJar = salt(cabbageJar);
+const saurkrautJar = ferment(saltyCabbageJar, 2);
+const saurkraut = saurkrautJar.takeOne();
+
+// Error, saurkrautJar.takeOne is not a function
+```
+The bug is on line ...
+1
+2
+3
+4
+5
+6
+7
+
 
 Minimal Jar
 ```javascript
