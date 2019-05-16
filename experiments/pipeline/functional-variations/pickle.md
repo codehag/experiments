@@ -134,7 +134,7 @@ The bug is on line ...
 7
 
 ```javascript
-const saurkraut = "cucumber"
+const saurkraut = "cabbage"
   |> wash
   |> cut
   |> pound
@@ -157,16 +157,18 @@ The bug is on line ...
 7
 
 ```javascript
-"cucumber"
+const saurkraut = "cabbage"
   |> wash
-  |> new Jar
+  |> cut
+  |> pound
+  |> new Jar(#)
   |> add(["water"], #)
   |> salt
-  |> ferment
+  |> ferment(#, 14)
   |> await
   |> #.takeOne()
 
-// Output is "Pickle with ingredients: undefined, water, salt"
+// Error: # is undefined
 ```
 
 The bug is on line ...
