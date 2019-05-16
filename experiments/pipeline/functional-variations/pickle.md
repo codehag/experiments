@@ -1,6 +1,6 @@
 #### Pickle Helpers
 
-```
+```javascript
 const dayInMilliseconds = 86400000;
 
 wash(type) {
