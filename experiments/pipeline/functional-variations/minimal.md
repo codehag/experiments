@@ -1,5 +1,7 @@
 ### Minimal Pipelines
 
+`|>`
+
 #### base case
 ```javascript
 function doubleSay (str) {
