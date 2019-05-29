@@ -72,7 +72,7 @@ const pickle = pickleJar.takeOne();
 const washedCucumber = wash("cucumber");
 const cucumberJar = new Jar(washedCucumber);
 const wateryCucumberJar = add("water", cucumberJar);
-const saltyCucumberJar = salt(cucumberJar);
+const saltyCucumberJar = salt(wateryCucumberJar);
 const pickleJar = await ferment(saltyCucumberJar, 2);
 const pickle = pickleJar.takeOne();
 ```
