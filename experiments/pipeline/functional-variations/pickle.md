@@ -71,7 +71,7 @@ const pickle = pickleJar.takeOne();
 ```javascript
 const washedCucumber = wash("cucumber");
 const cucumberJar = new Jar(washedCucumber);
-const wateryCucumberJar = add(["water"], cucumberJar);
+const wateryCucumberJar = add("water", cucumberJar);
 const saltyCucumberJar = salt(cucumberJar);
 const pickleJar = await ferment(saltyCucumberJar, 2);
 const pickle = pickleJar.takeOne();
@@ -81,7 +81,7 @@ const pickle = pickleJar.takeOne();
 const pickle = "cucumber"
   |> wash
   |> (_ => new Jar(_))
-  |> (_ => add(["water"], _))
+  |> (_ => add("water", _))
   |> salt
   |> (_ => ferment(_, 2))
   |> (_ => _.then(pickleJar => pickleJar.takeOne()))
@@ -91,7 +91,7 @@ const pickle = "cucumber"
 const pickle = "cucumber"
   |> wash
   |> (_ => new Jar(_))
-  |> (_ => add(["water"], _))
+  |> (_ => add("water", _))
   |> salt
   |> (_ => ferment(_, 2))
   |> await
@@ -102,7 +102,7 @@ const pickle = "cucumber"
 const pickle = "cucumber"
   |> wash
   |> new Jar(#)
-  |> add(["water"], #)
+  |> add("water", #)
   |> salt
   |> ferment(#, 2)
   |> await #
