@@ -64,7 +64,7 @@ ferment(jar, days) {
 #### Pickle test 1: Basic Pickle
 
 ```javascript
-const pickleJar = await ferment(salt(add("water", new Jar(wash("cucumber")))), 2));
+const pickleJar = await ferment(salt(add("water", new Jar(wash("cucumber")))), 2);
 const pickle = pickleJar.takeOne();
 ```
 
