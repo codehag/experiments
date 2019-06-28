@@ -107,20 +107,14 @@ c) [On the positive effect of Reactive Programming on Software Comprehension: an
 Study](http://www.guidosalvaneschi.com/attachments/papers/2017_On-the-Positive-Effect-of-Reactive-Programming-on-Software-Comprehension-An-Empirical-Study_pdf.pdf)
 
 Reading this study felt like the researcher already had the conclusion in mind when they started the
-research. The reason I get this impression is that they only tested reactive programming against the
-observer pattern in object oriented programming, but their conclusion is that reactive programming
-improves programmer comprehension without identifying that it only has evidence in relation to a
-subset of object oriented programming practices. It is too large of a claim given their experiment.
-The study is interesting for its references, they did a lot of reading into mental models and their
+research. The study is interesting for its references, they did a lot of reading into mental models and their
 discussion of the different ways code is represented in programmers minds is interesting.
 
 d) [An Empirical Investigation of the Effects of Type Systems and Code Completion on API Usability using TypeScript and JavaScript in MS Visual Studio](https://drive.google.com/file/d/0B5VfKG1fVepaTG41MlNTdWRQSDg/view)
 
 This study is interesting to give context on Stefan Hanenberg's thinking and research methods, as
 well as interesting as an example of a javascript / typescript comparison. Since these two are
-closely related, and their specification is linked. However the study itself didn't make much sense
-to me, as it was ultimately about api of VSCode usability and didn't need to have a comparison of those two
-langauges.
+closely related, and their specification is linked.
 
 ## 5. Large scale studies / essays on the current status of empirical research in PL design:
 
